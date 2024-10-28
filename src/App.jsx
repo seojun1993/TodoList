@@ -47,12 +47,10 @@ function App() {
   }
 
   const filteredList = state.list.filter(list => {
-    if(state.filterType === 'ALL'){
-      return list;
-    }else if(state.filterType === 'TODO'){
-      return !list.completed;
-    }else{
-      return list.completed
+    switch(state.filterType) {
+      case 'ALL' : return list;
+      case 'TODO' : return !list.completed;
+      default : return list.completed;
     }
   })
   
