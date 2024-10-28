@@ -11,12 +11,19 @@ import {
   TOGGLE_TODO_ALL, 
   DELETE_TODO_COMPLETED, 
   SET_FILTER,
+  init,
   initialState, 
   reducer 
 } from './reducer'
+import { useEffect } from 'react'
 
 function App() {
-  const [state, dispatch] = useReducer(reducer, initialState)
+  const [state, dispatch] = useReducer(reducer, initialState, init);
+
+  useEffect(() => {
+    window.localStorage.setItem('TODO', JSON.stringify(state.list));
+    window.localStorage.setItem('ID', JSON.stringify(state.id));
+  }, [state])
 
   const handleChangeFilterType = ( type ) => {
     dispatch({ type : SET_FILTER, payload : type });
