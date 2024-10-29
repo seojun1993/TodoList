@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import TodoItem from './TodoItem'
-import './TodoList.css'
+import styles from './TodoList.module.css'
 import { TodoContext } from '../contenxt'
 import { DELETE_TODO_COMPLETED, TOGGLE_TODO_ALL } from '../reducer'
 
@@ -27,12 +27,12 @@ const TodoList = () => {
     const isAllCompleted = filterdList.length > 0 && filterdList.every(list => list.completed);
   return (
     <div>
-      <div className="todo-list">
-        <div className="todo-header">
-            <input type="checkbox" className='todo-checkbox' checked={isAllCompleted} onChange={handleToggleAll}/>
-            <p className='todo-header-text'>할 일</p>
+      <div className={styles['todo-list']}>
+        <div className={styles['todo-header']}>
+            <input type="checkbox" className={styles['todo-checkbox']} checked={isAllCompleted} onChange={handleToggleAll}/>
+            <p className={styles['todo-header-text']}>할 일</p>
             {completedCount > 0 && (
-                <button className='todo-header-button' onClick={handleDeleteCompleted}>{completedCount}개 선택 삭제</button>
+                <button className={styles['todo-header-button']} onClick={handleDeleteCompleted}>{completedCount}개 선택 삭제</button>
             )}
         </div>
 

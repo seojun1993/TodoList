@@ -1,10 +1,10 @@
 import React, { useContext, useState } from 'react'
-import './TodoItem.css'
+import styles from './TodoItem.module.css'
 import { TodoContext } from '../contenxt';
 import { DELETE_TODO_COMPLETED, TOGGLE_TODO, UPDATE_TODO } from '../reducer';
 
 const TodoItem = ({ id, text, completed }) => {
-    const { state, dispatch } = useContext(TodoContext);
+    const { dispatch } = useContext(TodoContext);
     const [edit, setEdit] = useState(false);
 
     const handleEdit = () => { setEdit((prev) => !prev);}
@@ -12,15 +12,15 @@ const TodoItem = ({ id, text, completed }) => {
     const handleToggle = () => { dispatch({ type: TOGGLE_TODO, payload : id }) }
     const handleDelete = () => { dispatch({ type: DELETE_TODO_COMPLETED, payload : id}) }
   return (
-    <div className='todo-item'>
-        <input type="checkbox" className='todo-item-checkbox' checked={completed} onChange={handleToggle}/>
+    <div className={styles['todo-item']}>
+        <input type="checkbox" className={styles['todo-item-checkbox']} checked={completed} onChange={handleToggle}/>
 
         {
-            edit ? <input className='todo-edit-input' value={text} onChange={handleChange}/> : <p className={['todo-item-text', completed && 'completed'].join(' ')}>{text}</p>
+            edit ? <input className={styles['todo-edit-input']} value={text} onChange={handleChange}/> : <p className={[styles['todo-item-text'], completed && styles['completed']].join(' ')}>{text}</p>
         }
         
-        <button className='todo-item-button' onClick={handleEdit}>수정</button>
-        <button className='todo-item-button' onClick={handleDelete}>삭제</button>
+        <button className={styles['todo-item-button']} onClick={handleEdit}>수정</button>
+        <button className={styles['todo-item-button']} onClick={handleDelete}>삭제</button>
     </div>
   )
 }
