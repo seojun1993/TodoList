@@ -45,38 +45,39 @@ export const reducer = (state, action) => {
             }
 
         case DELETE_TODO : 
-        return {
-            ...state,
-            list : state.list.filter(item => item.id !== payload)
-        }
+            return {
+                ...state,
+                list : state.list.filter(item => item.id !== payload)
+            }
             
         case TOGGLE_TODO : 
-        return {
-            ...state,
-            list : state.list.map(item => {
-                if(item.id === payload) {
-                  return { ...item, completed : !item.completed }
-                }
-                return item;
-              })
-        }
+            return {
+                ...state,
+                list : state.list.map(item => {
+                    if(item.id === payload) {
+                    return { ...item, completed : !item.completed }
+                    }
+                    return item;
+                })
+            }
 
         case TOGGLE_TODO_ALL : 
-        return {
-            ...state,
-            list : state.list.map(item => ({ ...item, completed : payload }))
-        }
+            return {
+                ...state,
+                list : state.list.map(item => ({ ...item, completed : payload }))
+            }
             
         case DELETE_TODO_COMPLETED : 
-        return {
-            ...state,
-            list : state.list.filter(item => !item.completed )
-        }
+            return {
+                ...state,
+                list : state.list.filter(item => !item.completed )
+            }
+            
         case SET_FILTER : 
-        return {
-            ...state,
-            filterType : payload
-        }
+            return {
+                ...state,
+                filterType : payload
+            }
 
         default : {
             return {...state}
