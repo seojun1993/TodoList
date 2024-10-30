@@ -16,13 +16,11 @@ const Controls = () => {
     }
 
     const handleSubmit = () => {
-        // dispatch({ type: ADD_TODO, payload : text });
         dispatch(addTodo(text));
         setText('');
     }
 
     const handleChangeFilterType = (e) => {
-      // dispatch({ type: SET_FILTER, payload : e.target.value });
       dispatch(setFilter(e.target.value));
     }
 

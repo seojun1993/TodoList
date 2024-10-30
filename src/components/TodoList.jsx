@@ -18,7 +18,7 @@ const TodoList = () => {
     }
 
     const handleDeleteCompleted = () => {
-      dispatch( deleteTodoCompleted )
+      dispatch( deleteTodoCompleted() )
     }
 
     const filterdList = state.list.filter(list => {
