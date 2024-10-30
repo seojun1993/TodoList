@@ -16,7 +16,6 @@ const Controls = () => {
     }
 
     const handleChangeFilterType = (e) => {
-      console.log(e.target.value)
       dispatch({ type: SET_FILTER, payload : e.target.value });
     }
 

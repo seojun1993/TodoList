@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import TodoItem from './TodoItem'
 import { TodoContext } from '../contenxt'
 import { DELETE_TODO_COMPLETED, TOGGLE_TODO_ALL } from '../reducer'
@@ -24,7 +24,6 @@ const TodoList = () => {
     })
 
     const isAllCompleted = filterdList.length > 0 && filterdList.every(list => list.completed);
-
     const listClassName = `border-[1px] border-solid border-gray-500 rounded-[6px] mt-[16px]`;
     const headerClassName = `flex items-center h-[40px] px-[12px] gap-[12px]`;
     const checkboxClassName = `w-[16px] h-[16px]`;
