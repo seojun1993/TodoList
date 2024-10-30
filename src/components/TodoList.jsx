@@ -1,18 +1,24 @@
-import { useContext } from 'react'
 import TodoItem from './TodoItem'
-import { TodoContext } from '../contenxt'
-import { DELETE_TODO_COMPLETED, TOGGLE_TODO_ALL } from '../reducer'
+import { useSelector, useDispatch } from 'react-redux'
+import { deleteTodoCompleted, toggleTodoAll } from '../store/todoSlice';
+
+const listClassName = `border-[1px] border-solid border-gray-500 rounded-[6px] mt-[16px]`;
+const headerClassName = `flex items-center h-[40px] px-[12px] gap-[12px]`;
+const checkboxClassName = `w-[16px] h-[16px]`;
+const textClassName = 'grow';
+const buttonClassName = `border-[1px] border-solid border-gray-500 rounded-[6px] bg-transparent px-[12px] py-[0px] text-white shrink h-[30]px`
 
 const TodoList = () => {
-  const { state, dispatch } = useContext(TodoContext);
+  const state = useSelector(state => state.todo);
+  const dispatch = useDispatch();
 
     const completedCount = state.list.filter(list => list.completed === true).length;
     const handleToggleAll = (e) => {
-      dispatch({ type: TOGGLE_TODO_ALL, payload : e.target.checked })
+      dispatch( toggleTodoAll(e.target.value) )
     }
 
     const handleDeleteCompleted = () => {
-      dispatch({ type: DELETE_TODO_COMPLETED })
+      dispatch( deleteTodoCompleted )
     }
 
     const filterdList = state.list.filter(list => {
@@ -24,12 +30,6 @@ const TodoList = () => {
     })
 
     const isAllCompleted = filterdList.length > 0 && filterdList.every(list => list.completed);
-
-    const listClassName = `border-[1px] border-solid border-gray-500 rounded-[6px] mt-[16px]`;
-    const headerClassName = `flex items-center h-[40px] px-[12px] gap-[12px]`;
-    const checkboxClassName = `w-[16px] h-[16px]`;
-    const textClassName = 'grow';
-    const buttonClassName = `border-[1px] border-solid border-gray-500 rounded-[6px] bg-transparent px-[12px] py-[0px] text-white shrink h-[30]px`
 
   return (
     <div>
